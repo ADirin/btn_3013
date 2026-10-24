@@ -11,6 +11,13 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label fx:id="welcomeText" text="welcome"/>
+    <Button fx:id="btn1" text="English!" onAction="#btnEn"/>
+    <Button fx:id="btn2" text="Finnish!" onAction="#btnFi"/>
+    <Button fx:id="btn3" text="Swedish!" onAction="#btnSv"/>
+    <Button fx:id="btn4" text="Persian!" onAction="#btnFa"/>
+
+    <Label fx:id="timeLabel" text="Current time: --:--"/>
+    <Label fx:id="currencyLabel" text="Sample Currency: --"/>
+
 </VBox>
