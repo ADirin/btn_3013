@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+<VBox alignment="CENTER" spacing="15.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.btn_3013.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
+    <!-- Welcome Header -->
     <Label fx:id="welcomeText" text="welcome"/>
+
+    <!-- Language Selector Buttons -->
     <Button fx:id="btn1" text="English!" onAction="#btnEn"/>
     <Button fx:id="btn2" text="Finnish!" onAction="#btnFi"/>
     <Button fx:id="btn3" text="Swedish!" onAction="#btnSv"/>
     <Button fx:id="btn4" text="Persian!" onAction="#btnFa"/>
 
+    <!-- Localized Time Display -->
     <Label fx:id="timeLabel" text="Current time: --:--"/>
+
+    <!-- Localized Currency Display -->
     <Label fx:id="currencyLabel" text="Sample Currency: --"/>
 
 </VBox>

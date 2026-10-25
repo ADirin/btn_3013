@@ -13,8 +13,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class HelloController {
-    @FXML
-    private Label welcomeText;
+    @FXML private Label welcomeText;
     @FXML private Label timeLabel;
     @FXML private Button btn1;
     @FXML private Button btn2;
@@ -23,7 +22,6 @@ public class HelloController {
     @FXML private Label currencyLabel;
 
     private ResourceBundle rs;
-
 
     @FXML
     public void initialize() {
@@ -35,12 +33,11 @@ public class HelloController {
         }
     }
 
-
     private void loadLanguage(String language, String country) {
-        Locale locale = Locale.forLanguageTag(language+ "-" + country);
+        Locale locale = Locale.forLanguageTag(language + "-" + country);
         rs = ResourceBundle.getBundle("org.example.btn_3013.Messages_bundle", locale);
 
-        if(btn1 != null && btn2 != null && btn3 != null && btn4 != null && timeLabel !=null && currencyLabel != null) {
+        if (btn1 != null && btn2 != null && btn3 != null && btn4 != null && timeLabel != null && currencyLabel != null) {
             btn1.setText(rs.getString("btn1.text"));
             btn2.setText(rs.getString("btn2.text"));
             btn3.setText(rs.getString("btn3.text"));
@@ -61,50 +58,51 @@ public class HelloController {
             default   -> "UTC";
         };
 
-
+        // Check format in bundle, otherwise the display will be standard default
         String dateTimePattern = rs.containsKey("datetime.format") ? rs.getString("datetime.format") : "yyyy-MM-dd HH:mm:ss";
 
         ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId.of(zoneId));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateTimePattern, locale);
 
-        String timePrefix = rs.containsKey("time.label") ? rs.getString("time.prefix") : "Current Time: ";
+        // Key checked in containsKey now matches the key read in getString
+        String timePrefix = rs.containsKey("time.prefix") ? rs.getString("time.prefix") : "Current Time";
 
-        timeLabel.setText(timePrefix + "("+ zoneId+ ")" + formatter.format(zonedDateTime));
+        // Added formatting spaces between prefix, zoneId, and formatted datetime
+        timeLabel.setText(timePrefix + " (" + zoneId + "): " + formatter.format(zonedDateTime));
 
         double sampleAmount = 1234.56;
+        // Use NumberFormat to format the currency according to the locale
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+        // Ensure the currency symbol is correct for the locale
         String formattedCurrency = currencyFormatter.format(sampleAmount);
 
         if (currencyLabel != null) {
-            String currencyPrefix = rs.containsKey("currency.label")
-                    ? rs.getString("currency.label")
-                    : "Currency";
+            String currencyPrefix = rs.containsKey("currency.label") ? rs.getString("currency.label") : "Currency";
             currencyLabel.setText(currencyPrefix + ": " + formattedCurrency);
         }
-
-
-
     }
-
 
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
+    @FXML
     public void btnEn(ActionEvent actionEvent) {
         loadLanguage("en", "US");
-
     }
 
+    @FXML
     public void btnSv(ActionEvent actionEvent) {
         loadLanguage("sv", "SE");
     }
 
+    @FXML
     public void btnFi(ActionEvent actionEvent) {
         loadLanguage("fi", "FI");
     }
 
+    @FXML
     public void btnFa(ActionEvent actionEvent) {
         loadLanguage("fa", "IR");
     }
